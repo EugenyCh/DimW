@@ -1,0 +1,16 @@
+D:\Projects\All-master\DimW\DimW\bin\Release\DimW.exe.config
+D:\Projects\All-master\DimW\DimW\bin\Release\DimW.exe
+D:\Projects\All-master\DimW\DimW\bin\Release\DimW.pdb
+D:\Projects\All-master\DimW\DimW\bin\Release\MathNet.Numerics.dll
+D:\Projects\All-master\DimW\DimW\bin\Release\Newtonsoft.Json.dll
+D:\Projects\All-master\DimW\DimW\bin\Release\OpenTK.dll
+D:\Projects\All-master\DimW\DimW\bin\Release\MathNet.Numerics.xml
+D:\Projects\All-master\DimW\DimW\bin\Release\Newtonsoft.Json.pdb
+D:\Projects\All-master\DimW\DimW\bin\Release\Newtonsoft.Json.xml
+D:\Projects\All-master\DimW\DimW\bin\Release\OpenTK.pdb
+D:\Projects\All-master\DimW\DimW\bin\Release\OpenTK.xml
+D:\Projects\All-master\DimW\DimW\obj\Release\DimW.csprojAssemblyReference.cache
+D:\Projects\All-master\DimW\DimW\obj\Release\DimW.csproj.CoreCompileInputs.cache
+D:\Projects\All-master\DimW\DimW\obj\Release\DimW.csproj.CopyComplete
+D:\Projects\All-master\DimW\DimW\obj\Release\DimW.exe
+D:\Projects\All-master\DimW\DimW\obj\Release\DimW.pdb
