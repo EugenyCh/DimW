@@ -28,7 +28,7 @@ namespace DimW
         private double lookAngleH;
         private double lookMovingV;
         private double lookMovingH;
-        private Font font = new Font("Inconsolata", 14, FontStyle.Bold);
+        private Font font = new Font("Inconsolata", 13, FontStyle.Bold);
         private readonly Size labelSize;
         private bool solid = true;
 
@@ -43,7 +43,8 @@ namespace DimW
                 24,
                 8,
                 4);
-            window = new GameWindow(DisplayDevice.Default.Width, DisplayDevice.Default.Height, mode, "ND-Render", GameWindowFlags.Fullscreen);
+            window = new GameWindow(DisplayDevice.Default.Width, DisplayDevice.Default.Height, mode, "ND-Render",
+                GameWindowFlags.Fullscreen);
             window.VSync = VSyncMode.On;
             window.RenderFrame += Render;
             window.UpdateFrame += Update;
@@ -91,11 +92,13 @@ namespace DimW
                         pXY += pol[i][0] * pol[i + 1][1];
                         nYX += pol[i][1] * pol[i + 1][0];
                     }
+
                     double S = (pXY - nYX) / 2;
                     Ssum += S;
                     if (S > Smax)
                         Smax = S;
                 }
+
                 float alpha = (Ssum > 0) ? (float)(Smax / Ssum) : 1.0f;
                 Console.WriteLine(alpha);
                 MakePlanes();
@@ -106,6 +109,7 @@ namespace DimW
                 angles = Vector<double>.Build.Dense(NumberOfPlanes, 0.0);
                 return true;
             }
+
             return false;
         }
 
@@ -168,9 +172,11 @@ namespace DimW
         private void ScreenShot()
         {
             var pixels = new byte[3 * window.Width * window.Height];
-            GL.ReadPixels(0, 0, window.Width, window.Height, OpenTK.Graphics.OpenGL.PixelFormat.Rgb, PixelType.UnsignedByte, pixels);
+            GL.ReadPixels(0, 0, window.Width, window.Height, OpenTK.Graphics.OpenGL.PixelFormat.Rgb,
+                PixelType.UnsignedByte, pixels);
             var time = DateTime.Now;
-            var name = string.Format("{0:0000}-{1:00}-{2:00} {3:00}-{4:00}-{5:00}.{6:000}.png", time.Year, time.Month, time.Day, time.Hour, time.Minute, time.Second, time.Millisecond);
+            var name = string.Format("{0:0000}-{1:00}-{2:00} {3:00}-{4:00}-{5:00}.{6:000}.png", time.Year, time.Month,
+                time.Day, time.Hour, time.Minute, time.Second, time.Millisecond);
             var bmp = new Bitmap(window.Width, window.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
             int i = 0;
             for (int y = window.Height - 1; y >= 0; --y)
@@ -179,6 +185,7 @@ namespace DimW
                     bmp.SetPixel(x, y, Color.FromArgb(0, pixels[i + 2], pixels[i + 1], pixels[i]));
                     i += 3;
                 }
+
             bmp.Save(name);
             bmp.Dispose();
         }
@@ -215,6 +222,7 @@ namespace DimW
                     else
                         planes.Add(new int[] { k2, k1 });
                 }
+
             planes.Sort(PlaneComparator);
         }
 
@@ -242,6 +250,7 @@ namespace DimW
                 if (angles[i] >= 2.0 * Math.PI)
                     angles[i] -= 2.0 * Math.PI;
             }
+
             Rotate(deltaAngle);
 
             // Camera
@@ -278,7 +287,7 @@ namespace DimW
                 $"Render Delta:           {string.Format("{0,6:0.0}", window.RenderTime * 1000000)} \u00B5s\n" +
                 $"Update Delta:           {string.Format("{0,6:0.0}", window.UpdateTime * 1000000)} \u00B5s\n" +
                 $"Vertical Angle:         {string.Format("{0,6:0.0}", lookAngleV * 180 / Math.PI)}\n" +
-                $"Horizontal Agnle:       {string.Format("{0,6:0.0}", lookAngleH * 180 / Math.PI)}\n" +
+                $"Horizontal Angle:       {string.Format("{0,6:0.0}", lookAngleH * 180 / Math.PI)}\n" +
                 (solid ? "Solid model" : "Wireframe model") + "\n";
             for (int i = 0; i < NumberOfPlanes; ++i)
             {
@@ -289,6 +298,7 @@ namespace DimW
                     str = " " + str + " ";
                 label += str.PadLeft(23) + ":" + string.Format("{0,6:0.0}", angles[i] * 180 / Math.PI) + "\n";
             }
+
             graphics.DrawString(label, font, Brushes.GreenYellow, new PointF(0, 0));
             graphics.Flush();
             return bmp;
@@ -332,8 +342,10 @@ namespace DimW
                         GL.Normal3(subvector);
                         GL.Vertex3(subvector);
                     }
+
                     GL.End();
                 }
+
                 GL.Material(MaterialFace.FrontAndBack, MaterialParameter.Emission, mat_emission);
                 GL.Begin(PrimitiveType.LineLoop);
                 foreach (var vertex in polygon)
@@ -342,6 +354,7 @@ namespace DimW
                     GL.Normal3(subvector);
                     GL.Vertex3(subvector);
                 }
+
                 GL.End();
                 GL.Material(MaterialFace.FrontAndBack, MaterialParameter.Emission, Color.Black);
             }

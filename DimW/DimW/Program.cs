@@ -16,7 +16,6 @@ namespace DimW
             Engine engine = new Engine();
             engine.LoadFigure(args[0]);
             engine.Run();
-            return;
         }
     }
 }
